@@ -1,0 +1,30 @@
+---
+title: "Technical Requirements"
+excerpt: "Performance targets, procedural streaming constraints, save model, and platform expectations."
+category: "Technical"
+tags:
+  - "Performance"
+  - "Procedural Generation"
+  - "Save System"
+---
+
+## Performance Targets
+
+The specification targets platform-appropriate resolution and frame-rate profiles, with scalability from minimum PC through current-gen consoles.
+
+## Procedural Streaming Requirements
+
+- Chunk-based world composition
+- Deterministic seed behavior per run
+- Async loading to reduce traversal hitching
+- LOD strategy for distance stability
+
+## Save and Persistence
+
+- Single auto-save slot
+- Run-state persistence for world + inventory + progression triggers
+- Save deletion on death (permadeath model)
+
+## Networking and Expansion Path
+
+Initial target is single-player, while keeping room for future co-op architecture decisions.

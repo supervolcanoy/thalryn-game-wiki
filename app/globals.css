@@ -1,0 +1,605 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Text:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap");
+
+:root {
+  --bg: #0d110e;
+  --panel: #0f180f;
+  --panel-alt: #141e14;
+  --border: #1e301f;
+  --border-soft: #1a2a1b;
+  --text: #c8c0b0;
+  --text-soft: #a0988e;
+  --muted: #5a7a5c;
+  --accent: #8ab88c;
+  --accent-soft: #4a7a4c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: radial-gradient(ellipse at 20% 0%, rgba(15, 40, 20, 0.5) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(8, 20, 9, 0.8) 0%, transparent 60%), var(--bg);
+  color: var(--text);
+  font-family: "Crimson Text", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+a {
+  color: #7ab87c;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #a8d8a8;
+}
+
+.wiki-root {
+  min-height: 100vh;
+}
+
+.wiki-header {
+  background: #080e09;
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
+}
+
+.wiki-logo {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 2px;
+  padding: 13px 0;
+  text-shadow: 0 0 24px rgba(80, 150, 80, 0.25);
+}
+
+.wiki-logo-emphasis {
+  color: #3d6e40;
+}
+
+.wiki-header-search {
+  display: block;
+  flex: 1;
+  max-width: 420px;
+  position: relative;
+}
+
+.wiki-header-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #3a5e3c;
+  font-size: 16px;
+}
+
+.wiki-header-search input {
+  width: 100%;
+  background: #111a12;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 7px 12px 7px 30px;
+  color: var(--text);
+  font-family: "Crimson Text", serif;
+  font-size: 15px;
+  outline: none;
+}
+
+.wiki-search-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #0d140e;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  z-index: 120;
+}
+
+.wiki-search-result {
+  display: block;
+  padding: 8px 10px;
+  border-bottom: 1px solid #162518;
+}
+
+.wiki-search-result:last-child {
+  border-bottom: 0;
+}
+
+.wiki-search-result:hover {
+  background: #162018;
+}
+
+.wiki-search-result-title {
+  display: block;
+  color: #b8d8b8;
+  font-size: 14px;
+}
+
+.wiki-search-result-meta {
+  display: block;
+  color: #5a7a5c;
+  font-size: 12px;
+}
+
+.wiki-header-nav {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.wiki-header-nav-link {
+  color: #6a9e6c;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 2px;
+}
+
+.wiki-header-nav-link:hover {
+  background: #1a2e1c;
+  color: #a8c8a8;
+}
+
+.wiki-header-nav-link-active {
+  background: #1a2e1c;
+  color: #a8c8a8;
+}
+
+.wiki-tabbar {
+  background: #0a130b;
+  border-bottom: 1px solid #182819;
+  display: flex;
+  padding: 0 20px;
+  overflow-x: auto;
+  position: sticky;
+  top: 56px;
+  z-index: 90;
+}
+
+.wiki-tab {
+  color: #5a8e5c;
+  border-bottom: 3px solid transparent;
+  padding: 12px 18px;
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+.wiki-tab:hover {
+  color: var(--accent);
+}
+
+.wiki-tab-active {
+  color: var(--accent);
+  border-bottom-color: var(--accent-soft);
+}
+
+.wiki-shell {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 22px 16px;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.wiki-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.wiki-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.wiki-side-box {
+  background: var(--panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 2px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.wiki-side-title {
+  background: var(--panel-alt);
+  border-bottom: 1px solid var(--border-soft);
+  padding: 7px 12px;
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #5a8e5c;
+  text-transform: uppercase;
+}
+
+.wiki-side-links {
+  padding: 4px 0;
+  max-height: 360px;
+  overflow: auto;
+}
+
+.wiki-slink {
+  display: block;
+  padding: 5px 14px;
+  color: var(--accent);
+  font-size: 14px;
+  border-left: 2px solid transparent;
+}
+
+.wiki-slink:hover {
+  color: #b8d8b8;
+  border-left-color: var(--accent-soft);
+  background: #131f14;
+}
+
+.wiki-page-header {
+  border-bottom: 2px solid var(--border-soft);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+.wiki-page-title {
+  margin: 0;
+  font-family: "IM Fell English", serif;
+  font-size: 34px;
+  color: #d8d0c0;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.wiki-page-subtitle {
+  font-size: 14px;
+  color: #4a6a4c;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.wiki-banner {
+  background: linear-gradient(135deg, #0f1e10 0%, #0a130b 60%, #101a11 100%);
+  border: 1px solid #1e341f;
+  border-radius: 2px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+
+.wiki-banner-title {
+  margin: 0 0 8px;
+  font-family: "IM Fell English", serif;
+  font-size: 30px;
+  color: #c8d8c0;
+  font-weight: 400;
+}
+
+.wiki-banner-sub {
+  color: #7a9a7c;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.wiki-section-title {
+  margin: 0 0 14px;
+  font-family: "IM Fell English", serif;
+  font-size: 20px;
+  color: #b0c0b0;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 4px;
+  font-weight: 400;
+}
+
+.wiki-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.wiki-card-grid {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.wiki-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.wiki-card-link {
+  display: block;
+  color: inherit;
+}
+
+.wiki-card:hover {
+  border-color: #3a6e3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+.wiki-card-link:hover .wiki-card-title {
+  color: #d8d0c0;
+}
+
+.wiki-card-link:focus-visible,
+.wiki-header-nav-link:focus-visible,
+.wiki-tab:focus-visible,
+.wiki-slink:focus-visible {
+  outline: 2px solid #7ab87c;
+  outline-offset: 2px;
+}
+
+.wiki-card-thumb {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.wiki-card-thumb-muted {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #101810 0%, #0a120b 100%);
+}
+
+.wiki-card-doc-label {
+  color: #5a8e5c;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+.wiki-card-body {
+  padding: 10px 12px 12px;
+}
+
+.wiki-card-tag {
+  font-size: 10px;
+  color: #3d6e40;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.wiki-card-title {
+  margin: 2px 0 4px;
+  font-family: "IM Fell English", serif;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.wiki-card-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.wiki-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.wiki-panel {
+  background: var(--panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.wiki-panel-title {
+  background: var(--panel-alt);
+  border-bottom: 1px solid var(--border-soft);
+  padding: 7px 12px;
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #5a8e5c;
+  text-transform: uppercase;
+}
+
+.wiki-panel-content {
+  padding: 8px 12px;
+}
+
+.wiki-list-item {
+  font-size: 14px;
+  color: #8a9e8c;
+  padding: 6px 0;
+  border-bottom: 1px solid #141f14;
+}
+
+.wiki-list-item:last-child {
+  border-bottom: 0;
+}
+
+.wiki-change-note {
+  color: #4a5e4b;
+  font-style: italic;
+  font-size: 12.5px;
+}
+
+.wiki-breadcrumb {
+  font-size: 13px;
+  color: #4a5e4b;
+  margin-bottom: 8px;
+}
+
+.wiki-article-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.wiki-article-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.wiki-toc {
+  background: var(--panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 2px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: inline-block;
+  min-width: 220px;
+}
+
+.wiki-toc-title {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #5a8e5c;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.wiki-toc-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.wiki-toc-list li {
+  color: #7ab87c;
+  font-size: 14px;
+  margin: 3px 0;
+}
+
+.wiki-prose h2 {
+  font-family: "IM Fell English", serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #c0b8a8;
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 4px;
+  margin: 22px 0 10px;
+}
+
+.wiki-prose p,
+.wiki-prose li {
+  font-size: 15.5px;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+.wiki-infobox {
+  width: 250px;
+  flex-shrink: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  font-size: 13.5px;
+}
+
+.wiki-infobox-title {
+  background: var(--panel-alt);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 12px;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent);
+  text-align: center;
+}
+
+.wiki-infobox img {
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.wiki-infobox table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wiki-infobox td {
+  padding: 5px 10px;
+  border-bottom: 1px solid #111a11;
+  vertical-align: top;
+}
+
+.wiki-infobox td:first-child {
+  color: #5a8e5c;
+  font-weight: 600;
+  width: 42%;
+}
+
+.wiki-infobox td:last-child {
+  color: #9a9288;
+}
+
+.wiki-chip {
+  display: inline-block;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 2px 8px;
+  margin: 3px 6px 3px 0;
+  color: #7ab87c;
+  font-size: 13px;
+}
+
+.wiki-footer {
+  background: #080e09;
+  border-top: 1px solid var(--border-soft);
+  padding: 14px 24px;
+  font-size: 13px;
+  color: #3d5e3f;
+  text-align: center;
+}
+
+.search-input {
+  width: 100%;
+  background: #111a12;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 7px 12px;
+  color: var(--text);
+  font-family: "Crimson Text", serif;
+  font-size: 15px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+@media (max-width: 1024px) {
+  .wiki-shell {
+    flex-direction: column;
+  }
+
+  .wiki-sidebar {
+    width: 100%;
+  }
+
+  .wiki-article-layout {
+    flex-direction: column;
+  }
+
+  .wiki-infobox {
+    width: 100%;
+  }
+
+  .wiki-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
