@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import MiniSearch from "minisearch";
+import type { AsPlainObject } from "minisearch";
 
 type SearchDoc = {
   id: string;
@@ -14,7 +15,7 @@ type SearchDoc = {
 };
 
 type SearchPayload = {
-  index: unknown;
+  index: AsPlainObject | string;
   docs: SearchDoc[];
 };
 
@@ -55,7 +56,7 @@ export default function SearchClient() {
       return MiniSearch.loadJSON(payload.index, miniSearchOptions);
     }
 
-    return MiniSearch.loadJS(payload.index as Record<string, unknown>, miniSearchOptions);
+    return MiniSearch.loadJS(payload.index, miniSearchOptions);
   }, [payload]);
 
   const results = useMemo(() => {

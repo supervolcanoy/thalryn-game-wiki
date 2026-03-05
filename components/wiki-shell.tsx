@@ -23,7 +23,7 @@ function getActiveTab(pathname: string, docs: WikiDocMeta[]): WikiTabKey | null 
     const slug = pathname.replace("/wiki/", "").split("/")[0] ?? "";
     const entity = WIKI_ENTITIES.find((item) => item.sourceSlug === slug);
     if (entity) {
-      return entity.kind;
+      return entity.kind === "Bestiary" ? "Characters / NPCs" : entity.kind;
     }
     const doc = docs.find((item) => item.slug === slug);
     if (doc) {
