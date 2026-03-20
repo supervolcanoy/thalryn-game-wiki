@@ -33,7 +33,7 @@ export default function HomePage() {
                 <img className="wiki-card-thumb" src={doc.image} alt={doc.title} />
               ) : (
                 <div className="wiki-card-thumb" style={{ padding: "24px 12px" }}>
-                  <span style={{ fontSize: 42, color: "#2c4a2d" }}>
+                  <span style={{ fontSize: 42, color: "var(--text-placeholder-letter)" }}>
                     {doc.title.charAt(0)}
                   </span>
                 </div>
@@ -54,7 +54,7 @@ export default function HomePage() {
           <div className="wiki-panel-content">
             {didYouKnow.map((doc) => (
               <div className="wiki-list-item" key={doc.slug}>
-                <span style={{ color: "#3d6e40", marginRight: 8 }}>▸</span>
+                <span style={{ color: "var(--text-label)", marginRight: 8 }}>▸</span>
                 {doc.excerpt}
               </div>
             ))}

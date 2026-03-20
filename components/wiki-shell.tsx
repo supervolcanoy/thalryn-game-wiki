@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { docsForTab, getTabForCategory, WIKI_TABS, type WikiDocMeta, type WikiTabKey } from "@/lib/wiki-nav";
 import { WIKI_ENTITIES } from "@/lib/wiki-entities";
 
@@ -45,6 +45,21 @@ export default function WikiShell({
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const current = document.documentElement.getAttribute("data-theme");
+    if (current === "light" || current === "dark") {
+      setTheme(current);
+    }
+  }, []);
+
+  function toggleTheme() {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  }
   const activeTab = getActiveTab(pathname, docs);
   const contextualDocs = activeTab ? docsForTab(docs, activeTab) : [];
   const inlineResults = useMemo(() => {
@@ -135,6 +150,14 @@ export default function WikiShell({
               </Link>
             );
           })}
+          <button
+            className="wiki-theme-toggle"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            type="button"
+          >
+            {theme === "dark" ? "\u2600" : "\u263D"}
+          </button>
         </nav>
       </header>
 
@@ -215,7 +238,7 @@ export default function WikiShell({
       </div>
 
       <footer className="wiki-footer">
-        <span style={{ color: "#5a8e5c" }}>ThalrynWiki</span> - Fan-maintained
+        <span className="wiki-footer-brand">ThalrynWiki</span> - Fan-maintained
         encyclopedia for Thalryn. Not affiliated with the development team.
       </footer>
     </div>

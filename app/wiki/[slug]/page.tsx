@@ -72,7 +72,7 @@ export default async function WikiArticlePage({
                 style={{
                   width: "min(100%, 760px)",
                   height: "auto",
-                  border: "1px solid #1e301f",
+                  border: "1px solid var(--border)",
                   borderRadius: 2
                 }}
               />
@@ -133,8 +133,8 @@ export default async function WikiArticlePage({
         </aside>
       </section>
 
-      <div style={{ marginTop: 18, borderTop: "1px solid #1a2a1b", paddingTop: 10 }}>
-        <span style={{ color: "#4a5e4b", marginRight: 8 }}>Categories:</span>
+      <div style={{ marginTop: 18, borderTop: "1px solid var(--border-soft)", paddingTop: 10 }}>
+        <span style={{ color: "var(--text-dim)", marginRight: 8 }}>Categories:</span>
         <Link className="wiki-chip" href={`/categories/${normalizeSlug(doc.category)}`}>
           {doc.category}
         </Link>
